@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VELTRO - ROI Catalyst</title>
+
+    <!-- Tailwind CSS (CDN) -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts (Libre Baskerville & Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config for Earth Tones & Typography -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['"Libre Baskerville"', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            bg: '#fafaf9',      // stone-50
+                            surface: '#ffffff', // white
+                            border: '#e7e5e4',  // stone-200
+                            text: '#44403c',    // stone-700
+                            heading: '#451a03', // amber-950
+                            primary: '#92400e', // amber-800
+                            primaryHover: '#78350f', // amber-900
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        h1, h2, h3, h4, h5, h6 { font-family: '"Libre Baskerville"', serif; }
+        
+        .earth-gradient { background: linear-gradient(135deg, #f5f5f4 0%, #e7e5e4 100%); }
+        .shadow-premium { box-shadow: 0 20px 50px -12px rgba(69, 45, 26, 0.12); }
+        
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-out forwards;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Ocultar flechas en inputs numéricos para un look más limpio */
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance: none; 
+            margin: 0; 
+        }
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+<body class="bg-brand-bg text-brand-text min-h-screen flex selection:bg-brand-primary selection:text-white">
+
+    <!-- Sidebar Navigation (Minimalista) -->
+    <aside class="hidden lg:flex w-64 earth-gradient border-r border-brand-border flex-col fixed h-full z-10">
+        <div class="p-8">
+            <h1 class="text-3xl font-heading font-black text-brand-heading tracking-tight">VELTRO<span class="text-brand-primary">.</span></h1>
+            <p class="text-xs uppercase tracking-[0.2em] text-stone-500 font-bold mt-2">AI Automation Suite</p>
+        </div>
+        <nav class="flex-1 px-4 space-y-2 mt-4">
+            <a href="#" class="flex items-center gap-4 px-4 py-3 bg-white text-brand-heading rounded-xl shadow-sm border border-brand-border font-bold">
+                <i class="fa-solid fa-calculator w-5 text-brand-primary"></i> ROI Catalyst
+            </a>
+        </nav>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="lg:ml-64 flex-1 p-6 lg:p-12 w-full max-w-6xl mx-auto flex flex-col justify-center min-h-screen">
+        
+        <!-- Header -->
+        <header class="mb-10 lg:mb-12">
+            <div class="inline-flex items-center gap-2 px-3 py-1 bg-amber-100/50 text-brand-primary rounded-full mb-4 border border-amber-200/50">
+                <i class="fa-solid fa-bolt text-xs"></i>
+                <span class="text-xs font-bold uppercase tracking-widest">Calculadora de Eficiencia</span>
+            </div>
+            <h2 class="text-4xl lg:text-5xl font-heading text-brand-heading font-bold tracking-tight mb-4">Análisis de Flujo Manual</h2>
+            <p class="text-lg text-stone-500 max-w-2xl">Mide el impacto económico de tu operación actual, recibe un assessment por IA en tu correo y descubre el ahorro proyectado con automatización.</p>
+        </header>
+
+        <!-- ================= INPUT SECTION ================= -->
+        <section id="input-section" class="w-full animate-fade-in">
+            <form id="roi-form" class="space-y-6">
+                
+                <!-- Contact Forms (N8N Req) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Nombre -->
+                    <div class="bg-stone-50 p-6 rounded-2xl border border-brand-border shadow-premium focus-within:border-brand-primary focus-within:ring-1 focus-within:ring-amber-800 transition-all group">
+                        <div class="flex justify-between items-start mb-2">
+                            <label for="nombre" class="text-xs font-bold uppercase tracking-[0.1em] text-stone-500 group-focus-within:text-brand-primary transition-colors">Nombre Completo</label>
+                            <i class="fa-regular fa-user text-stone-300 text-lg group-focus-within:text-brand-primary transition-colors"></i>
+                        </div>
+                        <input type="text" id="nombre" required
+                            class="w-full text-2xl lg:text-3xl font-heading font-bold text-brand-heading bg-transparent border-none p-0 focus:ring-0 placeholder-stone-300"
+                            placeholder="Ej. Francisco">
+                    </div>
+
+                    <!-- Email -->
+                    <div class="bg-stone-50 p-6 rounded-2xl border border-brand-border shadow-premium focus-within:border-brand-primary focus-within:ring-1 focus-within:ring-amber-800 transition-all group">
+                        <div class="flex justify-between items-start mb-2">
+                            <label for="email" class="text-xs font-bold uppercase tracking-[0.1em] text-stone-500 group-focus-within:text-brand-primary transition-colors">Correo Electrónico</label>
+                            <i class="fa-regular fa-envelope text-stone-300 text-lg group-focus-within:text-brand-primary transition-colors"></i>
+                        </div>
+                        <input type="email" id="email" required
+                            class="w-full text-2xl lg:text-3xl font-heading font-bold text-brand-heading bg-transparent border-none p-0 focus:ring-0 placeholder-stone-300"
+                            placeholder="ejemplo@correo.com">
+                    </div>
+                </div>
+
+                <!-- Bento Grid Layout: Parametros de Calculo -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    
+                    <!-- Horas Manuales -->
+                    <div class="bg-stone-50 p-6 rounded-2xl border border-brand-border shadow-premium focus-within:border-brand-primary focus-within:ring-1 focus-within:ring-amber-800 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <label for="tareas_manuales_semana" class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.1em] text-stone-500 group-focus-within:text-brand-primary transition-colors">Horas Manuales <br>(Semana)</label>
+                            <i class="fa-regular fa-clock text-stone-300 text-lg group-focus-within:text-brand-primary transition-colors"></i>
+                        </div>
+                        <input type="number" id="tareas_manuales_semana" required min="1" step="1"
+                            class="w-full text-4xl lg:text-5xl font-heading font-bold text-brand-heading bg-transparent border-none p-0 focus:ring-0 placeholder-stone-200"
+                            placeholder="Ej. 15">
+                    </div>
+
+                    <!-- Tarifa/Hora -->
+                    <div class="bg-stone-50 p-6 rounded-2xl border border-brand-border shadow-premium focus-within:border-brand-primary focus-within:ring-1 focus-within:ring-amber-800 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <label for="costo_hora_usd" class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.1em] text-stone-500 group-focus-within:text-brand-primary transition-colors">Costo por Hora <br>(USD)</label>
+                            <i class="fa-solid fa-comments-dollar text-stone-300 text-lg group-focus-within:text-brand-primary transition-colors"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <span class="text-4xl lg:text-5xl font-heading font-bold text-stone-300 mr-2">$</span>
+                            <input type="number" id="costo_hora_usd" required min="1" step="0.5"
+                                class="w-full text-4xl lg:text-5xl font-heading font-bold text-brand-heading bg-transparent border-none p-0 focus:ring-0 placeholder-stone-200"
+                                placeholder="25.00">
+                        </div>
+                    </div>
+
+                    <!-- Tasa de Error -->
+                    <div class="bg-stone-50 p-6 rounded-2xl border border-brand-border shadow-premium focus-within:border-brand-primary focus-within:ring-1 focus-within:ring-amber-800 transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <label for="tasa_error_humano" class="text-[10px] sm:text-xs font-bold uppercase tracking-[0.1em] text-stone-500 group-focus-within:text-brand-primary transition-colors">Tasa Error Humano <br>(%)</label>
+                            <i class="fa-solid fa-triangle-exclamation text-stone-300 text-lg group-focus-within:text-brand-primary transition-colors"></i>
+                        </div>
+                        <div class="flex items-center">
+                            <input type="number" id="tasa_error_humano" required min="0" max="100" step="1"
+                                class="w-full text-4xl lg:text-5xl font-heading font-bold text-brand-heading bg-transparent border-none p-0 focus:ring-0 placeholder-stone-200"
+                                placeholder="Ej. 10">
+                            <span class="text-4xl lg:text-5xl font-heading font-bold text-stone-300 ml-2">%</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Error Message Banner -->
+                <div id="form-message" class="hidden flex items-center justify-center gap-3 p-4 bg-red-50 border border-red-200 text-red-800 rounded-xl text-sm font-bold shadow-sm">
+                    <i class="fa-solid fa-circle-exclamation text-lg"></i>
+                    <span id="form-message-text">Error en la conexión.</span>
+                </div>
+
+                <!-- Action Footer -->
+                <div class="flex flex-col sm:flex-row items-center justify-between pt-6 border-t border-brand-border gap-4">
+                    <p class="text-[10px] sm:text-xs font-bold uppercase tracking-widest text-stone-400 flex items-center gap-2">
+                        <i class="fa-solid fa-lock text-stone-300"></i> Conexión Webhook Segura
+                    </p>
+                    <button type="submit" id="calculate-btn"
+                        class="w-full sm:w-auto bg-brand-primary hover:bg-brand-primaryHover text-white font-semibold px-8 lg:px-10 py-4 lg:py-5 rounded-xl shadow-premium transition-all flex items-center justify-center gap-3 active:scale-[0.98]">
+                        <span class="tracking-wide uppercase text-sm">Calcular y Generar Reporte</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- ================= DASHBOARD SECTION (Results) ================= -->
+        <section id="results-dashboard" class="hidden w-full animate-fade-in space-y-8 mt-6">
+            
+            <!-- Dashboard Controls -->
+            <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                <div>
+                    <h3 class="text-2xl font-heading font-bold text-brand-heading">Proyección Financiera</h3>
+                    <p class="text-stone-500 font-medium">Modelo predictivo de ahorro anual automatizado.</p>
+                </div>
+                <button id="restart-btn" class="px-6 py-3 border-2 border-brand-border bg-white text-brand-heading font-bold rounded-xl hover:bg-stone-50 hover:border-stone-300 transition-all flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-rotate-left"></i> Nuevo Escenario
+                </button>
+            </div>
+
+            <!-- KPIs Matrix -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                
+                <!-- Main KPI: Savings -->
+                <div class="col-span-1 lg:col-span-8 bg-brand-heading text-white p-8 lg:p-10 rounded-3xl shadow-premium relative overflow-hidden flex flex-col justify-between border border-stone-800">
+                    <div class="relative z-10">
+                        <div class="flex items-center gap-2 mb-6">
+                            <span class="flex h-3 w-3 relative">
+                                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                                <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+                            </span>
+                            <p class="text-xs uppercase tracking-widest text-stone-300 font-bold">Ahorro Operativo Potencial (Anual)</p>
+                        </div>
+                        
+                        <h4 id="res-ahorro" class="text-5xl md:text-7xl font-heading font-black tracking-tighter mb-6 text-[#ffedd5]">$0.00</h4>
+                        
+                        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-md px-5 py-3 rounded-full border border-white/10">
+                            <i class="fa-solid fa-arrow-trend-up text-green-400 text-lg"></i>
+                            <span class="text-sm font-bold tracking-wide"><span id="res-porcentaje">80</span>% DE EFICIENCIA GANADA</span>
+                        </div>
+                    </div>
+                    <!-- Minimalist background vector -->
+                    <div class="absolute right-0 bottom-0 opacity-5 pointer-events-none transform translate-x-1/4 translate-y-1/4">
+                        <i class="fa-solid fa-microchip text-[300px]"></i>
+                    </div>
+                </div>
+
+                <!-- Secondary KPIs -->
+                <div class="col-span-1 lg:col-span-4 flex flex-col gap-6">
+                    
+                    <!-- Costo Actual -->
+                    <div class="bg-brand-surface p-6 lg:p-8 rounded-3xl border border-brand-border shadow-premium flex-1 flex flex-col justify-center">
+                        <p class="text-xs uppercase tracking-widest text-stone-400 font-bold mb-2">Costo Manual (Sin IA)</p>
+                        <p id="res-costo-actual" class="text-3xl lg:text-4xl font-heading font-bold text-brand-heading">$0.00</p>
+                        <div class="mt-4 pt-4 border-t border-brand-border flex items-center gap-2">
+                            <i class="fa-solid fa-money-bill-transfer text-stone-400"></i>
+                            <p class="text-xs font-medium text-stone-500">Gasto anual proyectado.</p>
+                        </div>
+                    </div>
+
+                    <!-- Horas Recuperadas -->
+                    <div class="earth-gradient p-6 lg:p-8 rounded-3xl border border-stone-200 shadow-premium flex-1 flex flex-col justify-center">
+                        <p class="text-xs uppercase tracking-widest text-stone-500 font-bold mb-2">Capital Humano Liberado</p>
+                        <p id="res-horas" class="text-3xl lg:text-4xl font-heading font-bold text-brand-primary">0 hrs</p>
+                        <div class="mt-4 pt-4 border-t border-[#dccfb4]/50 flex items-center gap-2">
+                            <i class="fa-regular fa-calendar-check text-stone-500"></i>
+                            <p class="text-xs font-medium text-stone-600">Horas anuales para reasignar.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Call to Action (Next Steps) -->
+            <div class="bg-white p-8 lg:p-10 rounded-3xl border border-brand-border shadow-sm text-center mt-6">
+                <div class="w-16 h-16 bg-amber-100 text-brand-primary border border-amber-200 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa-regular fa-envelope text-2xl"></i>
+                </div>
+                <h4 class="text-2xl font-heading font-bold text-brand-heading mb-3">Revisa tu Bandeja de Entrada</h4>
+                <p class="text-stone-500 max-w-xl mx-auto font-medium">Gemini está analizando tu operación. Recibirás en los próximos minutos un diagnóstico detallado con tu plan de implementación automatizado.</p>
+            </div>
+
+        </section>
+    </main>
+
+    <!-- Vanilla JS Logic & Webhook Handler -->
+    <script>
+        /**
+         * VELTRO ROI Catalyst Engine
+         * Arquitectura Frontend-to-Webhook (Make/n8n)
+         */
+
+        const WEBHOOK_URL = ""; // TODO: Insertar URL de Make.com / n8n aquí ej: "https://hook.us1.make.com/xxxxxxxxx"
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const form = document.getElementById('roi-form');
+            const calculateBtn = document.getElementById('calculate-btn');
+            const originalBtnHtml = calculateBtn.innerHTML;
+            
+            const inputSection = document.getElementById('input-section');
+            const dashboard = document.getElementById('results-dashboard');
+            const restartBtn = document.getElementById('restart-btn');
+            
+            const formMessage = document.getElementById('form-message');
+            const formMessageText = document.getElementById('form-message-text');
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                // Hide any previous errors
+                formMessage.classList.add('hidden');
+
+                // 1. Recolectar Payload (JSON)
+                const payload = {
+                    nombre: document.getElementById('nombre').value,
+                    email: document.getElementById('email').value,
+                    tareas_manuales_semana: parseFloat(document.getElementById('tareas_manuales_semana').value) || 0,
+                    costo_hora_usd: parseFloat(document.getElementById('costo_hora_usd').value) || 0,
+                    tasa_error_humano: (parseFloat(document.getElementById('tasa_error_humano').value) || 0) / 100,
+                    timestamp: new Date().toISOString()
+                };
+
+                // 2. Transición Visual de Estado (Cargando)
+                calculateBtn.disabled = true;
+                calculateBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i><span>PROCESANDO IA...</span>';
+                calculateBtn.classList.replace('bg-brand-primary', 'bg-stone-500');
+                calculateBtn.classList.replace('hover:bg-brand-primaryHover', 'hover:bg-stone-600');
+                calculateBtn.classList.add('cursor-wait');
+
+                try {
+                    let resultData;
+
+                    // 3. Lógica de Enrutamiento (Router Node Simulado o Real)
+                    if (WEBHOOK_URL.trim() === "") {
+                        
+                        /* ========================================================
+                           MODO OFFLINE (SIMULACIÓN DE NODO 2: MATH)
+                           ======================================================== */
+                        await new Promise(resolve => setTimeout(resolve, 1800)); // Simula delay
+                        
+                        const costoSemanal = payload.tareas_manuales_semana * payload.costo_hora_usd;
+                        const costoAnual = costoSemanal * 52;
+                        
+                        // Añadimos el costo por error (simplificación: la tasa de error incrementa el costo operativo real)
+                        const costoErrorAnual = costoAnual * payload.tasa_error_humano;
+                        const costoAnualTotal = costoAnual + costoErrorAnual;
+                        
+                        const eficiencia = 0.82; // 82% de ahorro
+                        const ahorroAnual = costoAnualTotal * eficiencia;
+                        const horasLiberadas = (payload.tareas_manuales_semana * 52) * eficiencia;
+
+                        // Mock de la respuesta JSON
+                        resultData = {
+                            status: "success",
+                            data: {
+                                ahorro_calculado: ahorroAnual,
+                                costo_base: costoAnualTotal,
+                                horas_liberadas: horasLiberadas,
+                                eficiencia: Math.round(eficiencia * 100)
+                            }
+                        };
+                        
+                    } else {
+                        /* ========================================================
+                           MODO PRODUCCIÓN (NODO 1: WEBHOOK CATCH)
+                           ======================================================== */
+                        const response = await fetch(WEBHOOK_URL, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+
+                        if (!response.ok) throw new Error(`HTTP Error: ${response.status}`);
+                        resultData = await response.json();
+                        
+                        // Validación de seguridad (Error Handling Node)
+                        if (resultData.status === "error") {
+                            throw new Error(resultData.message || "Error interno en Pipeline de Automatización");
+                        }
+                    }
+
+                    // 4. Renderizar Vista (Nodo 6: Response)
+                    if (resultData.status === "success" || resultData.status === 200) {
+                        
+                        // Si el webhook devuelve ok pero sin payload procesado visualmente (async n8n format)
+                        const dataResp = resultData.data || {
+                            ahorro_calculado: (payload.tareas_manuales_semana * payload.costo_hora_usd * 52 * 1.1) * 0.82,
+                            costo_base: payload.tareas_manuales_semana * payload.costo_hora_usd * 52 * 1.1,
+                            horas_liberadas: payload.tareas_manuales_semana * 52 * 0.82,
+                            eficiencia: 82
+                        };
+
+                        const { ahorro_calculado, costo_base, horas_liberadas, eficiencia } = dataResp;
+
+                        // Formateadores Financieros
+                        const formatCurrency = (val) => new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 }).format(val);
+                        const formatNumber = (val) => new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 }).format(val);
+
+                        // Inyectar DOM
+                        document.getElementById('res-ahorro').textContent = formatCurrency(ahorro_calculado);
+                        document.getElementById('res-costo-actual').textContent = formatCurrency(costo_base);
+                        document.getElementById('res-horas').textContent = formatNumber(horas_liberadas);
+                        document.getElementById('res-porcentaje').textContent = formatNumber(eficiencia);
+
+                        // Swap UI
+                        inputSection.classList.add('hidden');
+                        dashboard.classList.remove('hidden');
+                    } else {
+                        throw new Error("Respuesta JSON malformada desde el servidor.");
+                    }
+
+                } catch (error) {
+                    console.error("Arquitectura Webhook Falló:", error);
+                    
+                    formMessageText.textContent = error.message === "Failed to fetch" 
+                        ? "Error de CORS o URL Incorrecta del Webhook N8N." 
+                        : error.message;
+                    formMessage.classList.remove('hidden');
+                    
+                    calculateBtn.innerHTML = '<i class="fa-solid fa-triangle-exclamation"></i><span>ERROR DE CONEXIÓN</span>';
+                    calculateBtn.classList.replace('bg-stone-500', 'bg-red-700');
+                    calculateBtn.classList.replace('hover:bg-stone-600', 'hover:bg-red-800');
+                    
+                    // Volver al estado normal tras 3s
+                    setTimeout(() => resetBtnState(), 3000);
+                } finally {
+                    if (!dashboard.classList.contains('hidden')) {
+                        resetBtnState();
+                    }
+                }
+            });
+
+            // Función Helper: Resetea el botón principal
+            function resetBtnState() {
+                calculateBtn.innerHTML = originalBtnHtml;
+                calculateBtn.disabled = false;
+                calculateBtn.classList.remove('cursor-wait', 'bg-stone-500', 'bg-red-700', 'hover:bg-stone-600', 'hover:bg-red-800');
+                calculateBtn.classList.add('bg-brand-primary', 'hover:bg-brand-primaryHover');
+            }
+
+            // Flujo de Recalcular
+            restartBtn.addEventListener('click', () => {
+                dashboard.classList.add('hidden');
+                inputSection.classList.remove('hidden');
+                // Optativo: Limpiar form -> form.reset();
+            });
+        });
+    </script>
+</body>
+</html>
